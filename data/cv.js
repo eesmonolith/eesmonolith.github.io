@@ -167,9 +167,12 @@ window.CV = {
   // 언론 보도 (본인 인터뷰·본인 중심 기사 우선). EB-1A 기준 3 증빙과 동일 목록 유지.
   // url 없으면 링크 없이 제목만 표시. 원문 PDF는 ../EB1_evidence/press/ 에 별도 보존.
   press: [
+    { date: "2025.07", outlet: { en: "Financial News (파이낸셜뉴스)", ko: "파이낸셜뉴스" }, title: { en: "[fn People] \"AI is a tool for closing the education gap\" — Interview with Eunsang Eom, CEO of Team Monolith", ko: "[fn이사람] \"AI는 교육격차 해소 도구\" 엄은상 팀모노리스 대표" }, url: "https://www.fnnews.com/news/202507311451294037" },
     { date: "2025.02", outlet: { en: "ET News (전자신문)", ko: "전자신문" }, title: { en: "Team Monolith completes Classroom Revolution leading-teacher training program", ko: "팀모노리스, 교실혁명 선도교사단 연수 성료" }, url: "https://www.etnews.com/20250221000008" },
+    { date: "2024.12", outlet: { en: "JoongAng Ilbo (중앙일보)", ko: "중앙일보" }, title: { en: "Feature on AI Digital Textbook developers — \"Lowering the barrier to coding\": Eunsang Eom, Team Monolith", ko: "AI디지털교과서 개발사 특집 — 영재학교 출신 엄은상 대표 \"코딩 진입장벽 낮출 것\"" }, url: "https://www.joongang.co.kr/article/25296741" },
+    { date: "2024.09", outlet: { en: "ET News (전자신문)", ko: "전자신문" }, title: { en: "[Education Meets AI] (6) Interview with Eunsang Eom, CEO of Team Monolith: AI that both students and teachers can use", ko: "[교육, AI와 通하다]〈6〉엄은상 팀모노리스 대표 \"학생·교사 모두 활용할 수 있는 AI 인기…교사 눈높이 맞춘 서비스 경쟁력\"" }, url: "https://www.etnews.com/20240920000151" },
     { date: "2023.11", outlet: { en: "Money Today (머니투데이)", ko: "머니투데이" }, title: { en: "Interview: How a coding-education platform reached 207 schools within six months of launch", ko: "출시 6개월만에 207개 학교가 도입한 코딩교육 SW, 비결은? (인터뷰)" }, url: "https://news.mt.co.kr/mtview.php?no=2023111508383397981" },
-    // { date: "YYYY.MM", outlet: { en: "JoongAng Ilbo (중앙일보)", ko: "중앙일보" }, title: { en: "", ko: "" }, url: "" },
+    { date: "2023.10", outlet: { en: "IT Chosun (IT조선)", ko: "IT조선" }, title: { en: "[Log-in] Eunsang Eom, CEO of Team Monolith: \"After Korean and English comes programming language — prepare for the change\"", ko: "[로그人] 엄은상 팀모노리스 대표 \"국어·영어 다음은 프로그래밍 언어, 변화에 대비해야\"" }, url: "https://it.chosun.com/news/articleView.html?idxno=2023092103306" },
   ],
 
   projects: [
