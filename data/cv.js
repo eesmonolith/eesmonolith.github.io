@@ -164,6 +164,14 @@ window.CV = {
     { date: "2023.05", title: { en: "Generative AI ASIA (speaker)", ko: "Generative AI ASIA 연사" }, host: { en: "Wrtn Technologies", ko: "뤼튼 테크놀로지스" } },
   ],
 
+  // 언론 보도 (본인 인터뷰·본인 중심 기사 우선). EB-1A 기준 3 증빙과 동일 목록 유지.
+  // url 없으면 링크 없이 제목만 표시. 원문 PDF는 ../EB1_evidence/press/ 에 별도 보존.
+  press: [
+    { date: "2025.02", outlet: { en: "ET News (전자신문)", ko: "전자신문" }, title: { en: "Team Monolith completes Classroom Revolution leading-teacher training program", ko: "팀모노리스, 교실혁명 선도교사단 연수 성료" }, url: "https://www.etnews.com/20250221000008" },
+    { date: "2023.11", outlet: { en: "Money Today (머니투데이)", ko: "머니투데이" }, title: { en: "Interview: How a coding-education platform reached 207 schools within six months of launch", ko: "출시 6개월만에 207개 학교가 도입한 코딩교육 SW, 비결은? (인터뷰)" }, url: "https://news.mt.co.kr/mtview.php?no=2023111508383397981" },
+    // { date: "YYYY.MM", outlet: { en: "JoongAng Ilbo (중앙일보)", ko: "중앙일보" }, title: { en: "", ko: "" }, url: "" },
+  ],
+
   projects: [
     {
       name: { en: "Codle — AI learning platform", ko: "코들(Codle) — AI 학습플랫폼" },

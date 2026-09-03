@@ -7,7 +7,7 @@
     en: {
       "nav.about": "About", "nav.news": "News", "nav.publications": "Publications",
       "nav.experience": "Experience", "nav.teaching": "Teaching", "nav.talks": "Talks",
-      "nav.projects": "Projects", "nav.grants": "Grants",
+      "nav.projects": "Projects", "nav.grants": "Grants", "nav.press": "Press",
       "h.interests": "Research interests", "h.education": "Education",
       "p.pubnote": "First-author unless noted. Papers under review are not listed.",
       "t.date": "Date", "t.event": "Event", "t.host": "Host",
@@ -21,7 +21,7 @@
     ko: {
       "nav.about": "소개", "nav.news": "소식", "nav.publications": "논문",
       "nav.experience": "경력", "nav.teaching": "강의", "nav.talks": "연사·특강",
-      "nav.projects": "사업·개발 실적", "nav.grants": "연구·용역 과제",
+      "nav.projects": "사업·개발 실적", "nav.grants": "연구·용역 과제", "nav.press": "언론 보도",
       "h.interests": "연구 관심 분야", "h.education": "학력",
       "p.pubnote": "별도 표기가 없으면 제1저자. 심사 중인 논문은 기재하지 않음.",
       "t.date": "시기", "t.event": "행사 / 강의", "t.host": "주최",
@@ -160,6 +160,17 @@
     }).join("");
   }
 
+  function renderPress() {
+    var items = CV.press || [];
+    var sec = el("press");
+    sec.hidden = items.length === 0;
+    document.querySelectorAll('a[href="#press"]').forEach(function (a) { a.hidden = items.length === 0; });
+    el("press-list").innerHTML = items.map(function (x) {
+      var title = x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(L(x.title)) + "</a>" : esc(L(x.title));
+      return "<li><time>" + esc(x.date) + "</time><span><span class=\"outlet\">" + esc(L(x.outlet)) + "</span> " + title + "</span></li>";
+    }).join("");
+  }
+
   function renderGrants() {
     el("grants-table").tBodies[0].innerHTML = (CV.grants || []).map(function (g) {
       var amt = typeof g.amount === "number" ? g.amount.toLocaleString() : esc(g.amount || "");
@@ -173,7 +184,7 @@
     renderTimeline("experience-list", CV.experience);
     renderTimeline("education-list", CV.education);
     renderTimeline("teaching-list", CV.teaching);
-    renderTalks(); renderProjects(); renderGrants();
+    renderTalks(); renderPress(); renderProjects(); renderGrants();
   }
 
   document.querySelectorAll(".lang button").forEach(function (b) {
