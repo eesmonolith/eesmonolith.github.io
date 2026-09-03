@@ -43,7 +43,7 @@
     orcid: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 7.5v9M12 7.5v9h3a4.5 4.5 0 000-9z" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   };
 
-  var lang = (navigator.language || "").slice(0, 2) === "ko" ? "ko" : "en";
+  var lang = "en"; // 기본 영어 고정. 토글 또는 ?lang=ko 로 국문
   try { var stored = localStorage.getItem("lang"); if (stored === "ko" || stored === "en") lang = stored; } catch (e) {}
   var q = /[?&]lang=(en|ko)\b/.exec(location.search); if (q) lang = q[1];
 

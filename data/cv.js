@@ -59,7 +59,8 @@ window.CV = {
     { date: "2026-05", en: "Paper accepted to IEEE CSEE&T 2026 on multi-semester AI error feedback.", ko: "IEEE CSEE&T 2026 논문 채택 (다학기 AI 오류 피드백 분석)." },
     { date: "2026-03", en: "Paper accepted to ITS 2026 on help-seeking profiles and at-risk detection.", ko: "ITS 2026 논문 채택 (도움 요청 프로파일과 위험학생 조기 탐지)." },
     { date: "2026-03", en: "Started service as a Technical Research Personnel (전문연구요원) at HPIC Lab, Korea University.", ko: "고려대학교 고성능컴퓨팅 연구실 전문연구요원 복무 시작." },
-    { date: "2026-01", en: "Invited speaker at Edu-Tech Summit UAE; signed an MOU with Sharjah Private Education Authority (SPEA).", ko: "Edu-Tech Summit UAE 연사, 샤르자 교육청(SPEA)과 교육 AI 협력 MOU 체결." },
+    { date: "2026-02", en: "Spoke at the Sharjah International Summit on Improvement in Education and the World Education Summit in Dubai, UAE.", ko: "샤르자 국제 교육개선 서밋과 두바이 World Education Summit(UAE) 연사." },
+    { date: "2026-01", en: "Signed an MOU on educational AI with Sharjah Private Education Authority (SPEA), UAE.", ko: "샤르자 교육청(SPEA, UAE)과 교육 AI 협력 MOU 체결." },
     { date: "2025-09", en: "Speaker at the World Knowledge Forum (Maeil Business Newspaper).", ko: "세계지식포럼(매일경제) 연사." },
   ],
 
@@ -154,9 +155,11 @@ window.CV = {
   ],
 
   talks: [
-    { date: "2026.01", title: { en: "Edu-Tech Summit UAE (invited speaker)", ko: "Edu-Tech Summit UAE 연사" }, host: { en: "BII Education", ko: "BII Education" } },
+    { date: "2026.02", title: { en: "Sharjah International Summit on Improvement in Education (5th), Sharjah, UAE (speaker)", ko: "샤르자 국제 교육개선 서밋 (5회), 샤르자, UAE 연사" }, host: { en: "Sharjah Education Academy (SEA) & Sharjah Private Education Authority (SPEA)", ko: "샤르자교육아카데미(SEA) · 샤르자교육청(SPEA) 공동 주최" } },
+    { date: "2026.02", title: { en: "World Education Summit, Dubai, UAE (speaker)", ko: "World Education Summit, 두바이, UAE 연사" }, host: { en: "Elets Technomedia", ko: "Elets Technomedia" } },
     { date: "2025.10", title: { en: "Special lecture, Dongyang Mirae University", ko: "동양미래대학교 특강" }, host: { en: "Learning Spark", ko: "러닝스파크" } },
-    { date: "2025.09", title: { en: "World Knowledge Forum (speaker)", ko: "세계지식포럼 연사" }, host: { en: "Maeil Business Newspaper", ko: "매일경제" } },
+    { date: "2025.09", title: { en: "World Knowledge Forum 2025, Seoul (speaker)", ko: "세계지식포럼 2025, 서울 연사" }, host: { en: "Maeil Business Newspaper", ko: "매일경제" } },
+    { date: "2025.05", title: { en: "APEC Education Ministerial Meeting 2025, Jeju — AI Digital Textbook demonstration", ko: "APEC 교육장관회의 2025, 제주 — AI 디지털교과서 시연" }, host: { en: "Ministry of Education, Republic of Korea / APEC", ko: "교육부 / APEC" } },
     { date: "2024.02", title: { en: "Classroom Revolution Leading Teachers / Touch Teachers 2nd cohort (speaker)", ko: "교실혁명 선도교사단 / 터치교사단 2기 연사" }, host: { en: "KERIS", ko: "KERIS" } },
     { date: "2023.05", title: { en: "Generative AI ASIA (speaker)", ko: "Generative AI ASIA 연사" }, host: { en: "Wrtn Technologies", ko: "뤼튼 테크놀로지스" } },
   ],
@@ -177,7 +180,7 @@ window.CV = {
     {
       name: { en: "MOU with Sharjah Private Education Authority (UAE)", ko: "UAE 샤르자 교육청(SPEA) 업무협약" },
       period: "2026.01",
-      desc: { en: "Educational AI cooperation agreement with SPEA, in connection with the Edu-Tech Summit UAE.", ko: "샤르자 교육청과 교육 AI 협력 MOU 체결 (Edu-Tech Summit UAE 연사 연계)." },
+      desc: { en: "Educational AI cooperation agreement with SPEA, Sharjah, UAE.", ko: "샤르자 교육청(UAE)과 교육 AI 협력 MOU 체결." },
       link: "",
     },
   ],
