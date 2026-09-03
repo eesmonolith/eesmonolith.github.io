@@ -3,35 +3,12 @@
   var CV = window.CV;
   if (!CV) return;
 
-  var I18N = {
-    en: {
-      "nav.about": "About", "nav.news": "News", "nav.publications": "Publications",
-      "nav.experience": "Experience", "nav.teaching": "Teaching", "nav.talks": "Talks",
-      "nav.projects": "Projects", "nav.grants": "Grants", "nav.press": "Press",
-      "h.interests": "Research interests", "h.education": "Education",
-      "p.pubnote": "First-author unless noted. Papers under review are not listed.",
-      "t.date": "Date", "t.event": "Event", "t.host": "Host",
-      "t.period": "Period", "t.project": "Project", "t.funder": "Funder", "t.amount": "Amount (KRW, thousands)",
-      "f.updated": "Last updated", "btn.cv": "CV (PDF)", "btn.email": "Email", "btn.github": "GitHub",
-      "btn.scholar": "Google Scholar", "btn.linkedin": "LinkedIn", "btn.orcid": "ORCID",
-      "more.show": "Show all news", "more.hide": "Show less",
-      "type.conference": "Conference", "type.workshop": "Workshop", "type.journal": "Journal", "type.preprint": "Preprint",
-      "link.pdf": "PDF", "link.code": "Code", "link.doi": "DOI", "link.slides": "Slides", "link.video": "Video",
-    },
-    ko: {
-      "nav.about": "소개", "nav.news": "소식", "nav.publications": "논문",
-      "nav.experience": "경력", "nav.teaching": "강의", "nav.talks": "연사·특강",
-      "nav.projects": "사업·개발 실적", "nav.grants": "연구·용역 과제", "nav.press": "언론 보도",
-      "h.interests": "연구 관심 분야", "h.education": "학력",
-      "p.pubnote": "별도 표기가 없으면 제1저자. 심사 중인 논문은 기재하지 않음.",
-      "t.date": "시기", "t.event": "행사 / 강의", "t.host": "주최",
-      "t.period": "기간", "t.project": "과제명", "t.funder": "지원기관", "t.amount": "연구비 (천원)",
-      "f.updated": "최종 수정", "btn.cv": "이력서 (PDF)", "btn.email": "이메일", "btn.github": "GitHub",
-      "btn.scholar": "Google Scholar", "btn.linkedin": "LinkedIn", "btn.orcid": "ORCID",
-      "more.show": "전체 소식 보기", "more.hide": "접기",
-      "type.conference": "학회", "type.workshop": "워크샵", "type.journal": "저널", "type.preprint": "프리프린트",
-      "link.pdf": "PDF", "link.code": "코드", "link.doi": "DOI", "link.slides": "슬라이드", "link.video": "영상",
-    },
+  var LABELS = {
+    "btn.cv": "CV (PDF)", "btn.github": "GitHub", "btn.scholar": "Google Scholar",
+    "btn.linkedin": "LinkedIn", "btn.orcid": "ORCID",
+    "more.show": "Show all news", "more.hide": "Show less",
+    "type.conference": "Conference", "type.workshop": "Workshop", "type.journal": "Journal", "type.preprint": "Preprint",
+    "link.pdf": "PDF", "link.code": "Code", "link.doi": "DOI", "link.slides": "Slides", "link.video": "Video",
   };
 
   var ICONS = {
@@ -43,34 +20,24 @@
     orcid: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 7.5v9M12 7.5v9h3a4.5 4.5 0 000-9z" fill="none" stroke="currentColor" stroke-width="2"/></svg>',
   };
 
-  var lang = "en"; // 기본 영어 고정. 토글 또는 ?lang=ko 로 국문
-  try { var stored = localStorage.getItem("lang"); if (stored === "ko" || stored === "en") lang = stored; } catch (e) {}
-  var q = /[?&]lang=(en|ko)\b/.exec(location.search); if (q) lang = q[1];
-
-  function t(key) { return (I18N[lang] && I18N[lang][key]) || I18N.en[key] || key; }
-  function L(v) {
-    if (v == null) return "";
-    if (typeof v === "string") return v;
-    return v[lang] || v.en || v.ko || "";
-  }
+  function t(key) { return LABELS[key] || key; }
   function esc(s) {
-    return String(s).replace(/[&<>"']/g, function (c) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
     });
   }
   function el(id) { return document.getElementById(id); }
+  function norm(s) { return String(s).replace(/[\s.]+/g, "").toLowerCase(); }
   function isMe(name) {
-    var me = [L(CV.meta.name), CV.meta.name.en, CV.meta.name.ko].filter(Boolean);
-    return me.some(function (m) { return m && name.replace(/\s+/g, "").toLowerCase() === m.replace(/\s+/g, "").toLowerCase(); });
+    var me = [CV.meta.name].concat(CV.meta.aliases || []).filter(Boolean).map(norm);
+    return me.indexOf(norm(name)) !== -1;
   }
 
   function renderMeta() {
-    document.documentElement.lang = lang;
-    document.querySelectorAll("[data-bind]").forEach(function (n) { n.textContent = L(CV.meta[n.getAttribute("data-bind")]); });
-    document.querySelectorAll("[data-i18n]").forEach(function (n) { n.textContent = t(n.getAttribute("data-i18n")); });
-    document.title = L(CV.meta.name);
+    document.querySelectorAll("[data-bind]").forEach(function (n) { n.textContent = CV.meta[n.getAttribute("data-bind")] || ""; });
+    document.title = CV.meta.name;
     var p = el("portrait");
-    if (CV.meta.photo) { p.src = CV.meta.photo; p.hidden = false; } else { p.hidden = true; }
+    if (CV.meta.photo) { p.src = CV.meta.photo; p.alt = "Portrait of " + CV.meta.name; p.hidden = false; } else { p.hidden = true; }
 
     var links = [];
     if (CV.meta.cvPdf) links.push({ href: CV.meta.cvPdf, icon: "cv", label: t("btn.cv") });
@@ -88,15 +55,11 @@
     fm.href = "mailto:" + CV.meta.email; fm.textContent = CV.meta.email;
     el("year").textContent = new Date().getFullYear();
     el("updated").textContent = document.lastModified ? new Date(document.lastModified).toISOString().slice(0, 10) : "";
-    document.querySelectorAll(".lang button").forEach(function (b) {
-      b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false");
-    });
   }
 
   function renderAbout() {
-    var paras = CV.about[lang] || CV.about.en || [];
-    el("about-text").innerHTML = paras.map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
-    el("interests").innerHTML = (CV.interests || []).map(function (i) { return "<li>" + esc(L(i)) + "</li>"; }).join("");
+    el("about-text").innerHTML = (CV.about || []).map(function (p) { return "<p>" + esc(p) + "</p>"; }).join("");
+    el("interests").innerHTML = (CV.interests || []).map(function (i) { return "<li>" + esc(i) + "</li>"; }).join("");
   }
 
   var NEWS_LIMIT = 5, newsExpanded = false;
@@ -104,7 +67,7 @@
     var items = CV.news || [];
     var shown = newsExpanded ? items : items.slice(0, NEWS_LIMIT);
     el("news-list").innerHTML = shown.map(function (n) {
-      return "<li><time>" + esc(n.date) + "</time><span>" + esc(L(n)) + "</span></li>";
+      return "<li><time>" + esc(n.date) + "</time><span>" + esc(n.text) + "</span></li>";
     }).join("");
     var btn = el("news-more");
     btn.hidden = items.length <= NEWS_LIMIT;
@@ -112,7 +75,7 @@
   }
 
   function renderPubs() {
-    var pubs = (CV.publications || []).slice();
+    var pubs = CV.publications || [];
     var total = pubs.length;
     el("pub-list").innerHTML = pubs.map(function (p, i) {
       var authors = (p.authors || []).map(function (a) {
@@ -120,14 +83,14 @@
       }).join(", ");
       var meta = [];
       if (p.type) meta.push('<span class="badge type">' + esc(t("type." + p.type)) + "</span>");
-      if (L(p.note)) meta.push('<span class="badge">' + esc(L(p.note)) + "</span>");
+      if (p.note) meta.push('<span class="badge">' + esc(p.note) + "</span>");
       Object.keys(p.links || {}).forEach(function (k) {
         if (p.links[k]) meta.push('<a href="' + esc(p.links[k]) + '" target="_blank" rel="noopener">' + esc(t("link." + k)) + "</a>");
       });
       return '<li data-n="' + (total - i) + '">' +
         '<p class="pub-title">' + esc(p.title) + "</p>" +
         '<p class="pub-authors">' + authors + "</p>" +
-        '<p class="pub-venue">' + esc(L(p.venue)) + (p.year ? ", " + esc(p.year) : "") + "</p>" +
+        '<p class="pub-venue">' + esc(p.venue) + (p.year ? ", " + esc(p.year) : "") + "</p>" +
         (meta.length ? '<div class="pub-meta">' + meta.join("") + "</div>" : "") +
         "</li>";
     }).join("");
@@ -135,66 +98,53 @@
 
   function renderTimeline(id, items) {
     el(id).innerHTML = (items || []).map(function (x) {
-      var period = lang === "ko" ? (x.period || "").replace(/present/i, "현재") : (x.period || "");
-      return '<div class="tl"><div class="period">' + esc(period) + "</div><div>" +
-        '<div class="org">' + esc(L(x.org)) + "</div>" +
-        '<p class="role">' + esc(L(x.role)) + "</p>" +
-        (L(x.desc) ? '<p class="desc">' + esc(L(x.desc)) + "</p>" : "") +
+      return '<div class="tl"><div class="period">' + esc(x.period) + "</div><div>" +
+        '<div class="org">' + esc(x.org) + "</div>" +
+        '<p class="role">' + esc(x.role) + "</p>" +
+        (x.desc ? '<p class="desc">' + esc(x.desc) + "</p>" : "") +
         "</div></div>";
     }).join("");
   }
 
   function renderTalks() {
     el("talks-table").tBodies[0].innerHTML = (CV.talks || []).map(function (x) {
-      return '<tr><td class="date">' + esc(x.date) + "</td><td>" + esc(L(x.title)) + "</td><td>" + esc(L(x.host)) + "</td></tr>";
-    }).join("");
-  }
-
-  function renderProjects() {
-    el("project-list").innerHTML = (CV.projects || []).map(function (p) {
-      return '<div class="card"><h3>' + esc(L(p.name)) + "</h3>" +
-        '<div class="period">' + esc(p.period || "") + "</div>" +
-        "<p>" + esc(L(p.desc)) + "</p>" +
-        (p.link ? '<a class="card-link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.link.replace(/^https?:\/\//, "")) + "</a>" : "") +
-        "</div>";
+      return '<tr><td class="date">' + esc(x.date) + "</td><td>" + esc(x.title) + "</td><td>" + esc(x.host) + "</td></tr>";
     }).join("");
   }
 
   function renderPress() {
     var items = CV.press || [];
-    var sec = el("press");
-    sec.hidden = items.length === 0;
+    el("press").hidden = items.length === 0;
     document.querySelectorAll('a[href="#press"]').forEach(function (a) { a.hidden = items.length === 0; });
     el("press-list").innerHTML = items.map(function (x) {
-      var title = x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(L(x.title)) + "</a>" : esc(L(x.title));
-      return "<li><time>" + esc(x.date) + "</time><span><span class=\"outlet\">" + esc(L(x.outlet)) + "</span> " + title + "</span></li>";
+      var title = x.url ? '<a href="' + esc(x.url) + '" target="_blank" rel="noopener">' + esc(x.title) + "</a>" : esc(x.title);
+      return "<li><time>" + esc(x.date) + '</time><span><span class="outlet">' + esc(x.outlet) + "</span> " + title + "</span></li>";
+    }).join("");
+  }
+
+  function renderProjects() {
+    el("project-list").innerHTML = (CV.projects || []).map(function (p) {
+      return '<div class="card"><h3>' + esc(p.name) + "</h3>" +
+        '<div class="period">' + esc(p.period) + "</div>" +
+        "<p>" + esc(p.desc) + "</p>" +
+        (p.link ? '<a class="card-link" href="' + esc(p.link) + '" target="_blank" rel="noopener">' + esc(p.link.replace(/^https?:\/\//, "")) + "</a>" : "") +
+        "</div>";
     }).join("");
   }
 
   function renderGrants() {
     el("grants-table").tBodies[0].innerHTML = (CV.grants || []).map(function (g) {
-      var amt = typeof g.amount === "number" ? g.amount.toLocaleString() : esc(g.amount || "");
-      return '<tr><td class="date">' + esc(g.period) + "</td><td>" + esc(L(g.title)) + "</td><td>" + esc(L(g.funder)) + '</td><td class="num">' + amt + "</td></tr>";
+      var amt = typeof g.amount === "number" ? g.amount.toLocaleString("en-US") : esc(g.amount);
+      return '<tr><td class="date">' + esc(g.period) + "</td><td>" + esc(g.title) + "</td><td>" + esc(g.funder) + '</td><td class="num">' + amt + "</td></tr>";
     }).join("");
-    el("grants-note").textContent = L(CV.grantsNote);
+    el("grants-note").textContent = CV.grantsNote || "";
   }
 
-  function renderAll() {
-    renderMeta(); renderAbout(); renderNews(); renderPubs();
-    renderTimeline("experience-list", CV.experience);
-    renderTimeline("education-list", CV.education);
-    renderTimeline("teaching-list", CV.teaching);
-    renderTalks(); renderPress(); renderProjects(); renderGrants();
-  }
-
-  document.querySelectorAll(".lang button").forEach(function (b) {
-    b.addEventListener("click", function () {
-      lang = b.getAttribute("data-lang");
-      try { localStorage.setItem("lang", lang); } catch (e) {}
-      renderAll();
-    });
-  });
   el("news-more").addEventListener("click", function () { newsExpanded = !newsExpanded; renderNews(); });
 
-  renderAll();
+  renderMeta(); renderAbout(); renderNews(); renderPubs();
+  renderTimeline("experience-list", CV.experience);
+  renderTimeline("education-list", CV.education);
+  renderTimeline("teaching-list", CV.teaching);
+  renderTalks(); renderPress(); renderProjects(); renderGrants();
 })();

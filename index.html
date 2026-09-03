@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Eunsang Eom</title>
-  <meta name="description" content="Eunsang Eom — Ph.D. candidate at Korea University (HPIC Lab). Learning analytics, sequential pattern mining, knowledge tracing, and LLMs for education.">
-  <meta property="og:title" content="Eunsang Eom">
+  <title>Justin Eunsang Eom</title>
+  <meta name="description" content="Justin Eunsang Eom — Ph.D. candidate at Korea University (HPIC Lab). Learning analytics, sequential pattern mining, knowledge tracing, and LLMs for education.">
+  <meta property="og:title" content="Justin Eunsang Eom">
   <meta property="og:description" content="Ph.D. candidate at Korea University · Learning analytics, data mining, and AI for education.">
   <meta property="og:image" content="assets/photo.jpg">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238b1c2b'/><text x='50%25' y='56%25' font-family='Georgia,serif' font-size='34' fill='white' text-anchor='middle' dominant-baseline='middle'>E</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' rx='14' fill='%238b1c2b'/><text x='50%25' y='56%25' font-family='Georgia,serif' font-size='34' fill='white' text-anchor='middle' dominant-baseline='middle'>J</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -21,26 +21,22 @@
     <div class="wrap topbar-inner">
       <a class="brand" href="#top" data-bind="name"></a>
       <nav class="nav" aria-label="Sections">
-        <a href="#about" data-i18n="nav.about"></a>
-        <a href="#news" data-i18n="nav.news"></a>
-        <a href="#publications" data-i18n="nav.publications"></a>
-        <a href="#experience" data-i18n="nav.experience"></a>
-        <a href="#teaching" data-i18n="nav.teaching"></a>
-        <a href="#talks" data-i18n="nav.talks"></a>
-        <a href="#press" data-i18n="nav.press"></a>
-        <a href="#projects" data-i18n="nav.projects"></a>
-        <a href="#grants" data-i18n="nav.grants"></a>
+        <a href="#about">About</a>
+        <a href="#news">News</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#talks">Talks</a>
+        <a href="#press">Press</a>
+        <a href="#projects">Projects</a>
+        <a href="#grants">Grants</a>
       </nav>
-      <div class="lang" role="group" aria-label="Language">
-        <button type="button" data-lang="en">EN</button>
-        <button type="button" data-lang="ko">한국어</button>
-      </div>
     </div>
   </header>
 
   <main id="main" class="wrap">
     <section id="top" class="hero">
-      <img class="portrait" id="portrait" alt="Portrait of Eunsang Eom" width="180" height="180">
+      <img class="portrait" id="portrait" alt="Portrait of Justin Eunsang Eom" width="180" height="180">
       <div class="hero-text">
         <h1 data-bind="name"></h1>
         <p class="name-sub" data-bind="nameSub"></p>
@@ -52,46 +48,46 @@
     </section>
 
     <section id="about" class="section">
-      <h2 data-i18n="nav.about"></h2>
+      <h2>About</h2>
       <div class="about-grid">
         <div class="prose" id="about-text"></div>
         <aside class="interests">
-          <h3 data-i18n="h.interests"></h3>
+          <h3>Research interests</h3>
           <ul class="chips" id="interests"></ul>
         </aside>
       </div>
     </section>
 
     <section id="news" class="section">
-      <h2 data-i18n="nav.news"></h2>
+      <h2>News</h2>
       <ul class="news" id="news-list"></ul>
       <button type="button" class="more" id="news-more" hidden></button>
     </section>
 
     <section id="publications" class="section">
-      <h2 data-i18n="nav.publications"></h2>
-      <p class="muted" data-i18n="p.pubnote"></p>
+      <h2>Publications</h2>
+      <p class="muted">First-author unless noted. Papers under review are not listed.</p>
       <ol class="pubs" id="pub-list" reversed></ol>
     </section>
 
     <section id="experience" class="section">
-      <h2 data-i18n="nav.experience"></h2>
+      <h2>Experience</h2>
       <div class="timeline" id="experience-list"></div>
-      <h3 class="sub" data-i18n="h.education"></h3>
+      <h3 class="sub">Education</h3>
       <div class="timeline" id="education-list"></div>
     </section>
 
     <section id="teaching" class="section">
-      <h2 data-i18n="nav.teaching"></h2>
+      <h2>Teaching</h2>
       <div class="timeline" id="teaching-list"></div>
     </section>
 
     <section id="talks" class="section">
-      <h2 data-i18n="nav.talks"></h2>
+      <h2>Talks</h2>
       <div class="table-scroll">
         <table class="table" id="talks-table">
           <thead><tr>
-            <th data-i18n="t.date"></th><th data-i18n="t.event"></th><th data-i18n="t.host"></th>
+            <th>Date</th><th>Event</th><th>Host</th>
           </tr></thead>
           <tbody></tbody>
         </table>
@@ -99,21 +95,21 @@
     </section>
 
     <section id="press" class="section" hidden>
-      <h2 data-i18n="nav.press"></h2>
+      <h2>Press</h2>
       <ul class="press" id="press-list"></ul>
     </section>
 
     <section id="projects" class="section">
-      <h2 data-i18n="nav.projects"></h2>
+      <h2>Projects</h2>
       <div class="cards" id="project-list"></div>
     </section>
 
     <section id="grants" class="section">
-      <h2 data-i18n="nav.grants"></h2>
+      <h2>Grants</h2>
       <div class="table-scroll">
         <table class="table" id="grants-table">
           <thead><tr>
-            <th data-i18n="t.period"></th><th data-i18n="t.project"></th><th data-i18n="t.funder"></th><th class="num" data-i18n="t.amount"></th>
+            <th>Period</th><th>Project</th><th>Funder</th><th class="num">Amount (KRW, thousands)</th>
           </tr></thead>
           <tbody></tbody>
         </table>
@@ -128,7 +124,7 @@
       <span class="sep">·</span>
       <a href="mailto:" id="footer-mail"></a>
       <span class="sep">·</span>
-      <span data-i18n="f.updated"></span> <span id="updated"></span>
+      <span>Last updated</span> <span id="updated"></span>
     </div>
   </footer>
 
